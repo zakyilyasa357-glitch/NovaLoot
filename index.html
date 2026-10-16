@@ -137,23 +137,41 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closeModal()">&times;</span>
         <h2>🎮 Form Top Up Instan</h2>
+        
         <form id="topupForm" onsubmit="kirimWhatsApp(event)">
-    <label>Pilih Nominal:</label>
-    <select id="nominalGame" required>
-        <option value="">-- Pilih Nominal --</option>
-        <option value="86 Diamonds - Rp 19.500">86 Diamonds - Rp 19.500</option>
-        <option value="172 Diamonds - Rp 38.000">172 Diamonds - Rp 38.000</option>
-        <option value="257 Diamonds - Rp 57.000">257 Diamonds - Rp 57.000</option>
-    </select>
-    
-    <label>User ID Game:</label>
-    <input type="text" id="userId" placeholder="Masukkan User ID" required>
+            <!-- 1. Pilih Nominal -->
+            <label>Pilih Nominal:</label>
+            <select id="nominalGame" required>
+                <option value="">-- Pilih Nominal --</option>
+                <option value="86 Diamonds - Rp 19.500">86 Diamonds - Rp 19.500</option>
+                <option value="172 Diamonds - Rp 38.000">172 Diamonds - Rp 38.000</option>
+                <option value="257 Diamonds - Rp 57.000">257 Diamonds - Rp 57.000</option>
+            </select>
 
-    <label>Zone / Server ID:</label>
-    <input type="text" id="zoneId" placeholder="Masukkan Server ID (contoh: 1234)" required>
+            <!-- 2. Detail Akun -->
+            <label>User ID Game:</label>
+            <input type="text" id="userId" placeholder="Masukkan User ID" required>
 
-    <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Konfirmasi Pesanan via WhatsApp</button>
-</form>
+            <label>Zone / Server ID:</label>
+            <input type="text" id="zoneId" placeholder="Masukkan Server ID (contoh: 1234)" required>
+
+            <!-- 3. Tampilan QRIS Pembayaran -->
+            <div class="payment-box" style="margin-top: 15px; text-align: center; background: #0f172a; padding: 15px; border-radius: 10px; border: 1px dashed #38bdf8;">
+                <p style="font-size: 14px; font-weight: bold; color: #38bdf8; margin-bottom: 5px;">Langkah 1: Scan & Transfer via QRIS</p>
+                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 10px;">Silakan transfer sesuai nominal ke QRIS di bawah ini:</p>
+                
+                <img src="QR.jpeg" alt="QRIS Pembayaran" style="width: 170px; height: 170px; border-radius: 8px; background: white; padding: 5px;">
+            </div>
+
+            <!-- 4. Upload Bukti Transfer -->
+            <label style="margin-top: 15px; display: block;">Langkah 2: Unggah Bukti Transfer:</label>
+            <input type="file" id="buktiTransfer" accept="image/*" required style="background: #0f172a; padding: 8px; width: 100%; border-radius: 6px; border: 1px solid #334155;">
+
+            <!-- 5. Tombol Konfirmasi (Aktif setelah bukti diisi) -->
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 20px;">
+                Saya Sudah Transfer & Konfirmasi via WA
+            </button>
+        </form>
     </div>
 </div>
 <!-- ... kode HTML lainnya di bagian bawah sebelum penutup body ... -->
