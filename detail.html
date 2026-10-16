@@ -310,20 +310,32 @@
 
     <!-- KONTEN -->
     <div class="order-container">
+
+        <!-- KOLOM KIRI (INFO GAME LENGKAP DENGAN ICON OVERLAY) -->
+<div class="left-column">
+    <div class="game-info-wrapper">
         
-        <!-- KOLOM KIRI -->
-        <div class="left-column">
-            <div class="game-info-wrapper">
-                <img id="iconImg" src="" alt="Icon" class="game-icon-big">
-                <div>
-                    <span id="publisherTag" class="publisher-tag">Publisher</span>
-                    <h1 id="gameTitle" class="game-title-big">Nama Game</h1>
-                </div>
-            </div>
-            <div id="gameDesc" class="game-description">
-                Deskripsi game akan dimuat otomatis...
-            </div>
+        <!-- Pembungkus Gambar & Icon Tambahan (Relative/Absolute) -->
+        <div style="position: relative; display: inline-block;">
+            <!-- Gambar Icon Utama (Berubah Otomatis sesuai Database) -->
+            <img id="iconImg" src="" alt="Icon" class="game-icon-big">
+            
+            <!-- Ikon Tambahan / Lencana (Melayang di Pojok Kanan Bawah) -->
+            <i class="fa-solid fa-circle-check" style="position: absolute; bottom: 2px; right: 2px; color: #22c55e; background: #ffffff; border-radius: 50%; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></i>
         </div>
+
+        <!-- Judul dan Publisher -->
+        <div>
+            <span id="publisherTag" class="publisher-tag">Publisher</span>
+            <h1 id="gameTitle" class="game-title-big">Nama Game</h1>
+        </div>
+    </div>
+
+    <!-- Deskripsi Game -->
+    <div id="gameDesc" class="game-description">
+        Deskripsi game akan dimuat otomatis...
+    </div>
+</div>
 
         <!-- KOLOM KANAN -->
         <div class="right-column">
@@ -337,7 +349,7 @@
                 <div class="card-body">
                     <div class="input-wrapper">
                         <i class="fa fa-user input-icon"></i>
-                        <input type="text" id="userId" placeholder="Masukkan User ID">
+                        <input type="text" id="userIdInput" placeholder="Masukkan User ID">
                         <input type="text" id="zoneId" placeholder="Server ID (Opsional)" style="margin-top: 10px;">
                     </div>
                     <div class="input-help">
@@ -386,76 +398,126 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div> <!-- penutup card-body (baris 405) -->
 
-            <button class="btn-beli" onclick="prosesCheckout()">Beli Sekarang &rarr;</button>
-
-        </div>
+    <!-- TOMBOL BELI DI TENGAH -->
+    <div style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+        <button type="button" class="btn-primary" onclick="prosesPembayaran()" style="padding: 12px 35px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            Beli Sekarang &rarr;
+        </button>
     </div>
 
+</div> <!-- penutup order-card -->
+
+ 
     <!-- LOGIKA MENANGKAP DATA GAME & RENDER HALAMAN -->
     <script>
-        // Database Produk Game
-        const databaseGame = {
-            'free-fire': {
-                title: 'Free Fire',
-                publisher: 'Garena',
-                image: 'images/ff.jpg',
-                desc: 'Top Up Free Fire aman, cepat, dan terpercaya. Masukkan ID Anda dan pilih nominal diamond yang diinginkan.',
-                denom: [
-                    { name: '50 Diamonds', price: 'Rp 8.000' },
-                    { name: '140 Diamonds', price: 'Rp 20.000' },
-                    { name: '355 Diamonds', price: 'Rp 50.000' },
-                    { name: '720 Diamonds', price: 'Rp 100.000' }
-                ]
-            },
-            'mobile-legends': {
-                title: 'Mobile Legends',
-                publisher: 'Moonton',
-                image: 'images/mlbb.jpg',
-                desc: 'Top Up Diamond Mobile Legends instan. Masukkan User ID dan Zone ID Anda dengan benar.',
-                denom: [
-                    { name: '86 Diamonds', price: 'Rp 19.500' },
-                    { name: '172 Diamonds', price: 'Rp 38.000' },
-                    { name: '257 Diamonds', price: 'Rp 57.000' },
-                    { name: '706 Diamonds', price: 'Rp 150.000' }
-                ]
-            },
-            'roblox': {
-                title: 'Roblox',
-                publisher: 'Roblox Corporation',
-                image: 'images/roblox.jpg',
-                desc: 'Beli Robux resmi dan instan untuk avatar dan game favorit Anda di Roblox.',
-                denom: [
-                    { name: '50 Robux', price: 'Rp 21.750' },
-                    { name: '100 Robux', price: 'Rp 28.500' },
-                    { name: '200 Robux', price: 'Rp 55.000' },
-                    { name: '800 Robux', price: 'Rp 145.000' }
-                ]
-            },
-            'valorant': {
-                title: 'Valorant',
-                publisher: 'Riot Games',
-                image: 'images/valorant.jpg',
-                desc: 'Top Up Valorant Points (VP) resmi langsung masuk ke akun Riot Anda.',
-                denom: [
-                    { name: '300 VP', price: 'Rp 35.000' },
-                    { name: '625 VP', price: 'Rp 70.000' },
-                    { name: '1125 VP', price: 'Rp 120.000' }
-                ]
-            },
-            'pubg-mobile': {
-                title: 'PUBG Mobile',
-                publisher: 'Tencent Games',
-                image: 'images/pubg.jpg',
-                desc: 'Top Up UC PUBG Mobile aman dan legal 100%.',
-                denom: [
-                    { name: '60 UC', price: 'Rp 15.000' },
-                    { name: '325 UC', price: 'Rp 75.000' },
-                    { name: '660 UC', price: 'Rp 150.000' }
-                ]
-            }
-        };
+    const databaseGame = {
+    'free-fire': {
+        title: 'Free Fire',
+        publisher: 'Garena',
+        image: 'image/ff-banner.jpg',
+        icon: 'image/ff.jpg',
+        desc: 'Top Up Free Fire hanya dalam hitungan detik. Cukup masukan ID Free Fire Anda. Pilih jumlah Diamond yang Anda inginkan, selesaikan pembayaran, dan Diamond akan secara langsung ditambahkan ke akun Free Fire Anda.',
+        denom: [
+            { name: '50 Diamonds', price: 'Rp 8.000' },
+            { name: '140 Diamonds', price: 'Rp 20.000' },
+            { name: '355 Diamonds', price: 'Rp 50.000' },
+            { name: '720 Diamonds', price: 'Rp 100.000' }
+        ]
+    },
+    'mobile-legends': {
+        title: 'Mobile Legends',
+        publisher: 'Moonton',
+        image: 'image/ml-banner.avif',
+        icon: 'image/mlbb.jpg',
+        desc: 'Top Up Diamond Mobile Legends aman, cepat, dan terpercaya. Masukkan User ID dan Zone ID Anda dengan benar, pilih nominal Diamond, lalu selesaikan pembayaran.',
+        denom: [
+            { name: '86 Diamonds', price: 'Rp 19.500' },
+            { name: '172 Diamonds', price: 'Rp 38.000' },
+            { name: '257 Diamonds', price: 'Rp 57.000' },
+            { name: '706 Diamonds', price: 'Rp 150.000' }
+        ]
+    },
+    'pubg-mobile': {
+        title: 'PUBG Mobile',
+        publisher: 'Tencent Games',
+        image: 'image/banner-pubg.jpg',
+        icon: 'image/PUBG.webp',
+        desc: 'Beli Unknown Cash (UC) PUBG Mobile instan dan aman di sini. Cukup masukkan ID Karakter Anda, pilih nominal UC, dan lakukan pembayaran. UC langsung masuk ke akun Anda.',
+        denom: [
+            { name: '60 UC', price: 'Rp 15.000' },
+            { name: '325 UC', price: 'Rp 75.000' },
+            { name: '660 UC', price: 'Rp 150.000' },
+            { name: '1800 UC', price: 'Rp 375.000' }
+        ]
+    },
+    'clash-of-clans': {
+        title: 'Clash of Clans',
+        publisher: 'Supercell',
+        image: 'image/banner-coc.webp',
+        icon: 'image/Coc.png',
+        desc: 'Top Up Gems Clash of Clans dengan mudah dan cepat. Masukkan Player Tag akun CoC Anda, pilih jumlah Gems yang diinginkan, dan selesaikan transaksi.',
+        denom: [
+            { name: '80 Gems', price: 'Rp 15.000' },
+            { name: '500 Gems', price: 'Rp 75.000' },
+            { name: '1200 Gems', price: 'Rp 150.000' },
+            { name: '2500 Gems', price: 'Rp 300.000' }
+        ]
+    },
+    'clash-royale': {
+        title: 'Clash Royale',
+        publisher: 'Supercell',
+        image: 'image/CR-banner.avif',
+        icon: 'image/CR.png',
+        desc: 'Dapatkan Gems dan Pass Royale Clash Royale secara instan. Masukkan Player Tag Anda, pilih item atau jumlah Gems yang Anda butuhkan.',
+        denom: [
+            { name: '80 Gems', price: 'Rp 15.000' },
+            { name: '500 Gems', price: 'Rp 75.000' },
+            { name: '1200 Gems', price: 'Rp 150.000' },
+            { name: 'Pass Royale', price: 'Rp 79.000' }
+        ]
+    },
+    'roblox': {
+        title: 'Roblox',
+        publisher: 'Roblox Corporation',
+        image: 'image/banner-roblox.jpeg',
+        icon: 'image/roblox.webp',
+        desc: 'Top Up Robux Roblox resmi, cepat, dan aman. Masukkan username atau data akun Roblox Anda dengan benar untuk mempercepat proses pengiriman Robux.',
+        denom: [
+            { name: '400 Robux', price: 'Rp 75.000' },
+            { name: '800 Robux', price: 'Rp 150.000' },
+            { name: '1700 Robux', price: 'Rp 300.000' },
+            { name: '4500 Robux', price: 'Rp 750.000' }
+        ]
+    },
+    'valorant': {
+        title: 'Valorant',
+        publisher: 'Riot Games',
+        image: 'image/banner-valorant.jpg',
+        icon: 'image/valorant.avif',
+        desc: 'Beli Valorant Points (VP) resmi Riot Games dengan harga terbaik. Masukkan Riot ID Anda, pilih jumlah VP, dan lakukan pembayaran. VP langsung masuk ke akun Anda.',
+        denom: [
+            { name: '125 VP', price: 'Rp 15.000' },
+            { name: '420 VP', price: 'Rp 50.000' },
+            { name: '700 VP', price: 'Rp 80.000' },
+            { name: '1375 VP', price: 'Rp 150.000' }
+        ]
+    },
+    'magic-chess': {
+        title: 'Magic Chess: Go Go',
+        publisher: 'Moonton',
+        image: 'image/mcgg-banner.png',
+        icon: 'image/mcgg.webp',
+        desc: 'Top Up Magic Chess Go Go (MCGG) instan dan aman. Masukkan User ID dan Zone ID Anda dengan benar untuk melakukan pembelian item atau pass.',
+        denom: [
+            { name: '100 Badges', price: 'Rp 15.000' },
+            { name: '250 Badges', price: 'Rp 35.000' },
+            { name: '500 Badges', price: 'Rp 70.000' },
+            { name: '1000 Badges', price: 'Rp 140.000' }
+        ]
+    }
+};
 
         // Ambil parameter game dari URL (contoh: detail.html?game=free-fire)
         const urlParams = new URLSearchParams(window.location.search);
@@ -517,6 +579,33 @@
 
             window.open(`https://wa.me/${noAdmin}?text=${teks}`, '_blank');
         }
+        document.getElementById('bannerImg').src = currentGame.image; // Untuk foto banner atas
+document.getElementById('iconImg').src = currentGame.icon;   // Untuk foto icon kecil
+document.getElementById('gameDesc').innerText = currentGame.desc; // Untuk teks deskripsi
+
+function prosesPembayaran() {
+    const gameName = currentGame ? currentGame.title : 'Game';
+    const selectedItem = selectedDenom ? selectedDenom.name : 'Item Game';
+    const price = selectedDenom ? selectedDenom.price : 'Rp 0';
+    const iconPath = currentGame ? currentGame.icon : '';
+    
+    // Ambil nilai User ID dengan aman
+    const userIdInput = document.getElementById('userId') || document.querySelector('input[type="text"]');
+    const userId = userIdInput ? userIdInput.value.trim() : '';
+
+    // Validasi: Jika ID kosong, tampilkan peringatan
+    if (!userId) {
+        alert('Silakan masukkan ID Pemain terlebih dahulu!');
+        if (userIdInput) userIdInput.focus();
+        return;
+    }
+
+    // Susun URL untuk dikirim ke checkout.html beserta metode pembayarannya
+    const checkoutUrl = `checkout.html?game=${encodeURIComponent(gameName)}&item=${encodeURIComponent(selectedItem)}&price=${encodeURIComponent(price)}&userId=${encodeURIComponent(userId)}&icon=${encodeURIComponent(iconPath)}&method=${encodeURIComponent(typeof selectedPaymentMethod !== 'undefined' ? selectedPaymentMethod : 'QRIS')}`;
+
+    // Buka checkout di tab baru
+    window.open(checkoutUrl, '_blank');
+}
     </script>
-</body>
+    </body>
 </html>

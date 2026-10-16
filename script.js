@@ -13,7 +13,7 @@ const dataGame = {
     },
     'Mobile Legends': {
         publisher: 'Moonton',
-        image: 'images/mlbb.jpg',
+        image: 'image/ml-banner.avif',
         denom: [
             { nama: '86 Diamonds', harga: 'Rp 19.500' },
             { nama: '172 Diamonds', harga: 'Rp 38.000' },
@@ -22,7 +22,7 @@ const dataGame = {
     },
     'Roblox': {
         publisher: 'Roblox Corporation',
-        image: 'images/roblox.jpg',
+        image: 'image/banner-roblox.jpeg',
         denom: [
             { nama: '50 Robux', harga: 'Rp 21.750' },
             { nama: '100 Robux', harga: 'Rp 28.500' },
@@ -31,7 +31,7 @@ const dataGame = {
     },
     'Valorant': {
         publisher: 'Riot Games',
-        image: 'images/valorant.jpg',
+        image: 'image/valorant.jpg',
         denom: [
             { nama: '300 VP', harga: 'Rp 35.000' },
             { nama: '625 VP', harga: 'Rp 70.000' }
@@ -39,7 +39,7 @@ const dataGame = {
     },
     'PUBG Mobile': {
         publisher: 'Tencent Games',
-        image: 'images/pubg.jpg',
+        image: 'image/pubg.jpg',
         denom: [
             { nama: '60 UC', harga: 'Rp 15.000' },
             { nama: '325 UC', harga: 'Rp 75.000' }
@@ -47,21 +47,21 @@ const dataGame = {
     },
     'Magic Chess: Go Go': {
         publisher: 'Moonton',
-        image: 'images/mcgg.jpg',
+        image: 'image/mcgg.jpg',
         denom: [
             { nama: '50 Diamonds', harga: 'Rp 12.000' }
         ]
     },
     'Clash of Clans': {
         publisher: 'Supercell',
-        image: 'images/coc.jpg',
+        image: 'image/coc.jpg',
         denom: [
             { nama: '80 Gems', harga: 'Rp 16.000' }
         ]
     },
     'Clash Royale': {
         publisher: 'Supercell',
-        image: 'images/clashroyale.jpg',
+        image: 'image/clashroyale.jpg',
         denom: [
             { nama: '80 Gems', harga: 'Rp 16.000' }
         ]
