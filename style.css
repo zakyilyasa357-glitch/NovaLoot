@@ -400,3 +400,425 @@ footer {
     color: white;
     font-size: 14px;
 }
+/* SECTION PRODUK UNGGULAN */
+.games-section {
+    background-color: #0d1117;
+    padding: 40px 0;
+    overflow: hidden;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 8%;
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* CONTAINER SLIDER BERJALAN */
+.slider-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+
+/* TRACK ANIMASI BERJALAN PELAN */
+.slider-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: jalanPelan 20s linear infinite;
+}
+
+/* Hentikan animasi saat kursor diarahkan ke kartu game */
+.slider-container:hover .slider-track {
+    animation-play-state: paused;
+}
+
+/* KARTU GAME */
+.game-card {
+    background: #161b22;
+    border-radius: 16px;
+    width: 170px;
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #30363d;
+    transition: transform 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+.game-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.game-title {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* KODE ANIMASI INFINITE SCROLL */
+@keyframes jalanPelan {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+/* ==========================================
+   FIX SLIDER BERJALAN PELAN (HORIZONTAL)
+   ========================================== */
+.games-section {
+    background-color: #0b0f19 !important;
+    padding: 30px 0 !important;
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
+.section-title h2 {
+    color: #ffffff !important;
+    font-size: 20px !important;
+    padding-left: 5% !important;
+    margin-bottom: 15px !important;
+}
+
+.slider-container {
+    width: 100% !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+.slider-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    width: max-content !important;
+    animation: jalanPelan 15s linear infinite !important;
+}
+
+.slider-container:hover .slider-track {
+    animation-play-state: paused !important;
+}
+
+.game-card {
+    background: #161b22 !important;
+    border-radius: 14px !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    padding: 10px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    border: 1px solid #30363d !important;
+    box-sizing: border-box !important;
+}
+
+.game-card img {
+    width: 100% !important;
+    height: 130px !important;
+    object-fit: cover !important;
+    border-radius: 10px !important;
+    display: block !important;
+}
+
+.game-title {
+    margin-top: 8px !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+}
+
+/* CONTAINER SLIDER DENGAN SHADOW OVERLAY KIRI & KANAN */
+.slider-container {
+    width: 100% !important;
+    overflow: hidden !important;
+    position: relative !important;
+}
+
+/* EFEX BAYANGAN / GRADIENT FADE-OUT KIRI DAN KANAN */
+.slider-container::before,
+.slider-container::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    width: 80px !important; /* Lebar area bayangan */
+    height: 100% !important;
+    z-index: 2 !important;
+    pointer-events: none !important; /* Agar kartu di balik bayangan tetap bisa diklik */
+}
+
+/* Bayangan di sudut KIRI (Mendatar dari gelap ke transparan) */
+.slider-container::before {
+    left: 0 !important;
+    background: linear-gradient(to right, #0b0f19 0%, rgba(11, 15, 25, 0) 100%) !important;
+}
+
+/* Bayangan di sudut KANAN (Mendatar dari transparan ke gelap) */
+.slider-container::after {
+    right: 0 !important;
+    background: linear-gradient(to left, #0b0f19 0%, rgba(11, 15, 25, 0) 100%) !important;
+}
+.slider-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    width: max-content !important;
+    animation: jalanPelan 30s linear infinite !important; /* Diubah dari 18s menjadi 30s agar gerakan tetap halus dan pelan */
+}
+/* MODAL DETAIL GAME */
+.modal-detail {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px 10px;
+}
+
+.modal-detail-content {
+    background: #0f172a;
+    color: white;
+    max-width: 600px;
+    margin: 20px auto;
+    border-radius: 18px;
+    padding: 20px;
+    position: relative;
+    border: 1px solid #334155;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px; top: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #94a3b8;
+}
+
+/* HEADER DETAIL GAME */
+.detail-header {
+    margin-bottom: 25px;
+}
+
+.detail-banner-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.detail-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: -30px;
+    padding: 0 15px;
+}
+
+.detail-icon-img {
+    width: 70px; height: 70px;
+    border-radius: 14px;
+    border: 3px solid #0f172a;
+    object-fit: cover;
+}
+
+.publisher-tag {
+    font-size: 12px;
+    background: #1e293b;
+    padding: 3px 10px;
+    border-radius: 6px;
+    color: #94a3b8;
+}
+
+.detail-info h2 {
+    font-size: 22px;
+    margin-top: 4px;
+}
+
+/* PILIH DENOM SECTION */
+.denom-section {
+    background: #1e293b;
+    border-radius: 14px;
+    padding: 15px;
+}
+
+.step-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.step-badge span {
+    background: #ccff00;
+    color: #000;
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* GRID KARTU HARGA / NOMINAL */
+.denom-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.denom-card {
+    background: #ffffff;
+    color: #0f172a;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.denom-card:hover {
+    border-color: #2563eb;
+    transform: translateY(-2px);
+}
+
+.denom-card h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.denom-card .price {
+    font-weight: 800;
+    color: #16a34a;
+    font-size: 15px;
+}
+/* SECTION METODE PEMBAYARAN & INPUT USER */
+.payment-section, .user-section {
+    background: #1e293b;
+    border-radius: 14px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.payment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.pay-card {
+    background: #0f172a;
+    border: 2px solid #334155;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pay-card:hover, .pay-card.active {
+    border-color: #38bdf8;
+    background: #1e293b;
+}
+
+.pay-title {
+    font-size: 12px;
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+.pay-badge {
+    font-size: 10px;
+    background: #22c55e;
+    color: #000;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+    margin-top: 8px;
+}
+
+/* INPUT DATA AKUN & TOMBOL CHECKOUT */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 12px;
+    background: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+}
+
+.btn-checkout {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-checkout:hover {
+    background: #1d4ed8;
+}
+
+/* STYLING AKTIF SAAT DENOM DIKLIK */
+.denom-card.active {
+    border-color: #2563eb !important;
+    background: #eff6ff !important;
+}
+/* Pastikan pointer-events aman untuk klik */
+.slider-container {
+    width: 100% !important;
+    overflow: hidden !important;
+    position: relative !important;
+    pointer-events: auto !important;
+}
+
+.slider-track {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 15px !important;
+    width: max-content !important;
+    animation: jalanPelan 30s linear infinite !important;
+}
+
+/* Pastikan bayangan kiri/kanan tidak menghalangi klik */
+.slider-container::before,
+.slider-container::after {
+    pointer-events: none !important; 
+}
+
+.game-card {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
