@@ -258,35 +258,22 @@
             document.getElementById('checkoutIcon').src = urlParams.get('icon');
         }
 
-        function konfirmasiBayar() {
-    const wa = document.getElementById('whatsappInput').value;
-    const email = document.getElementById('emailInput').value;
+  function konfirmasiBayar() {
+    const wa = document.getElementById('whatsappInput') ? document.getElementById('whatsappInput').value.trim() : '';
+    const email = document.getElementById('emailInput') ? document.getElementById('emailInput').value.trim() : '';
     const totalTagihan = document.getElementById('checkoutTotal').innerText;
-    const game = document.getElementById('checkoutTitle').innerText;
-    const item = document.getElementById('checkoutItem').innerText;
-    const userId = document.getElementById('checkoutUserId').innerText;
 
+    // Validasi opsional: pastikan salah satu terisi jika ingin diwajibkan
     if (!wa && !email) {
         alert('Harap isi minimal salah satu kontak (WhatsApp atau Email) untuk menerima bukti pembayaran!');
         return;
     }
 
-    // Nomor WhatsApp Admin Toko Anda (Ganti dengan nomor Anda, diawali kode negara 62)
-    const noAdmin = '6281234567890'; 
+    // Simpan data kontak pembeli secara diam-diam di latar belakang (localStorage)
+    localStorage.setItem('buyerWa', wa);
+    localStorage.setItem('buyerEmail', email);
 
-    // Format pesan
-    const teksPesan = `Halo Admin NovaLoot, saya ingin konfirmasi pesanan:%0A` +
-                      `🎮 Game: ${encodeURIComponent(game)}%0A` +
-                      `💎 Item: ${encodeURIComponent(item)}%0A` +
-                      `💰 Total: ${encodeURIComponent(totalTagihan)}%0A` +
-                      `🆔 User ID: ${encodeURIComponent(userId)}%0A` +
-                      `📱 WA Pembeli: ${encodeURIComponent(wa)}%0A` +
-                      `✉️ Email: ${encodeURIComponent(email)}`;
-
-    // Kirim pesan ke WA Admin di tab baru
-    window.open(`https://wa.me/${noAdmin}?text=${teksPesan}`, '_blank');
-
-    // Lanjut ke halaman QRIS
+    // Langsung arahkan ke halaman QRIS tanpa membuka aplikasi WhatsApp
     window.location.href = `qris.html?total=${encodeURIComponent(totalTagihan)}`;
 }
     </script>

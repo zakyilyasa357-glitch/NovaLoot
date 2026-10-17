@@ -431,10 +431,10 @@ footer {
 
 /* TRACK ANIMASI BERJALAN PELAN */
 .slider-track {
-    display: flex;
-    gap: 20px;
-    width: max-content;
-    animation: jalanPelan 20s linear infinite;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); /* Mengatur ukuran kotak minimal 130px */
+    gap: 20px; /* Jarak antar kotak game */
+    padding: 10px 0;
 }
 
 /* Hentikan animasi saat kursor diarahkan ke kartu game */
@@ -468,10 +468,11 @@ footer {
 }
 
 .game-title {
-    margin-top: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* KODE ANIMASI INFINITE SCROLL */

@@ -97,6 +97,10 @@
                 <span class="value" style="color: #22c55e;">Lunas / Sukses</span>
             </div>
             <div>
+                <span class="label">No. WA / Email:</span>
+                <span class="value" id="invContact">-</span>
+            </div>
+            <div>
                 <span class="label">Total Pembayaran:</span>
                 <span class="value" id="invTotal">Rp 0</span>
             </div>
@@ -120,6 +124,13 @@
         if (total) {
             document.getElementById('invTotal').innerText = total;
         }
+
+        // Ambil data kontak yang disimpan dari checkout.html
+        const buyerWa = localStorage.getItem('buyerWa');
+        const buyerEmail = localStorage.getItem('buyerEmail');
+        const contactInfo = buyerWa || buyerEmail || 'Tidak Diisi';
+        
+        document.getElementById('invContact').innerText = contactInfo;
     </script>
 </body>
 </html>

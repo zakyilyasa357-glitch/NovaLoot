@@ -43,7 +43,7 @@
     <h2>🔥 Flash Sale Hari Ini</h2>
     <div class="promo-grid">
         <div class="search-container">
-    <input type="text" id="searchGame" placeholder="🔍 Cari game favoritmu di sini..." onkeyup="cariGame()">
+    <input type="text" id="searchInput" placeholder="🔍 Cari game favoritmu di sini..." onkeyup="filterGames()">
 </div>
         <!-- Kartu Promo 1: Free Fire -->
         <div class="promo-card">
@@ -77,12 +77,7 @@
  
     </div>
 </section>
-  <!-- SECTION PRODUK UNGGULAN (SLIDER BERJALAN PELAN) -->
-<section id="games" class="games-section">
-    <div class="section-title">
-        <span>🔥</span>
-        <h2>Produk Unggulan</h2>
-    </div>
+ 
 <!-- ================= SECTION PRODUK UNGGULAN (SLIDER) ================= -->
 <section id="games" class="games-section">
     <div class="section-title">
@@ -178,7 +173,109 @@
     </div> <!-- TAG PENUTUP slider-container -->
 </section> <!-- TAG PENUTUP SECTION GAMES -->
 
+<!-- ======================================= -->
+<!-- SECTION: SEMUA GAMES (5 ATAS, 5 BAWAH)  -->
+<!-- ======================================= -->
+<section id="games" class="games-section" style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Judul Section -->
+    <div class="section-title" style="background: #1e293b; padding: 12px 20px; border-radius: 8px; margin-bottom: 20px;">
+        <h2 style="margin: 0; color: #f8fafc; font-size: 18px;">🎮 Semua Games</h2>
+    </div>
 
+    <!-- Container Grid (Dibuat persis 5 kolom kesamping) -->
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 100%;">
+        
+        <!-- 1. Mobile Legends -->
+        <a href="detail.html?game=mobile-legends" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/mlbb.jpg" alt="Mobile Legends" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Mobile Legends</div>
+        </a>
+
+        <!-- 2. Free Fire -->
+        <a href="detail.html?game=free-fire" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/ff.jpg" alt="Free Fire" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Free Fire</div>
+        </a>
+
+        <!-- 3. PUBG Mobile -->
+        <a href="detail.html?game=pubg-mobile" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/PUBG.webp" alt="PUBG Mobile" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">PUBG Mobile</div>
+        </a>
+
+        <!-- 4. Magic Chess -->
+        <a href="detail.html?game=magic-chess" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/mcgg.webp" alt="Magic Chess" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Magic Chess</div>
+        </a>
+
+        <!-- 5. Valorant -->
+        <a href="detail.html?game=valorant" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/valorant.avif" alt="Valorant" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Valorant</div>
+        </a>
+
+        <!-- 6. CODM -->
+        <a href="detail.html?game=codm" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/codm.png" alt="CODM" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">CODM</div>
+        </a>
+
+        <!-- 7. Arena of Valor -->
+        <a href="detail.html?game=aov" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/aov.jpeg" alt="Arena of Valor" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Arena of Valor</div>
+        </a>
+
+        <!-- 8. Blood Strike -->
+        <a href="detail.html?game=blood-strike" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/blood.webp" alt="Blood Strike" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Blood Strike</div>
+        </a>
+
+        <!-- 9. Ace Racer -->
+        <a href="detail.html?game=ace-racer" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/ace.webp" alt="Ace Racer" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Ace Racer</div>
+        </a>
+
+        <!-- 10. Age of Magic -->
+        <a href="detail.html?game=age-of-magic" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column;">
+            <img src="image/aom.jpg" alt="Age of Magic" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Age of Magic</div>
+        </a>
+
+        <!-- --- GAME TAMBAHAN (DISEMBUNYIKAN SEBELUM TOMBOL DIKLIK) --- -->
+        
+        <!-- 11. Clash of Clans -->
+        <a href="detail.html?game=clash-of-clans" class="extra-games" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: none; flex-direction: column;">
+            <img src="image/Coc.png" alt="Clash of Clans" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Clash of Clans</div>
+        </a>
+
+        <!-- 12. Clash Royale -->
+        <a href="detail.html?game=clash-royale" class="extra-games" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: none; flex-direction: column;">
+            <img src="image/CR.png" alt="Clash Royale" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Clash Royale</div>
+        </a>
+
+        <!-- 13. Roblox -->
+        <a href="detail.html?game=roblox" class="extra-games" style="background: #ffffff; border-radius: 12px; overflow: hidden; text-decoration: none; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: none; flex-direction: column;">
+            <img src="image/roblox.webp" alt="Roblox" style="width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px 12px 0 0;">
+            <div style="font-size: 13px; font-weight: 600; color: #1e293b; padding: 10px 6px;">Roblox</div>
+        </a>
+
+    </div>
+</section>
+
+<!-- Tombol Tampilkan Lainnya -->
+<div style="text-align: center; margin-top: 20px; margin-bottom: 30px;">
+    <button onclick="toggleMoreGames()" id="loadMoreBtn" style="background-color: #ccff00; color: #0f172a; border: none; padding: 12px 30px; font-size: 15px; font-weight: bold; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 12px rgba(204, 255, 0, 0.3); display: inline-flex; align-items: center; gap: 8px;">
+        <span id="loadMoreText">Tampilkan Lainnya</span>
+        <i class="fa-solid fa-chevron-down" id="loadMoreIcon"></i>
+    </button>
+</div>
 <!-- ================= SECTION TESTIMONI (TERPISAH KELUAR) ================= -->
 <section id="testi" class="testi-section">
     <div class="section-title">
@@ -309,5 +406,26 @@
         </div>
     </div>
 </div>
+<script>
+        function filterGames() {
+            // Ambil kata kunci yang diketik user
+            const input = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // Ambil semua kartu game di dalam slider-track
+            const gameCards = document.querySelectorAll('.slider-track .game-card');
+
+            gameCards.forEach(card => {
+                // Ambil judul/nama game dari dalam kartu
+                const gameTitle = card.innerText.toLowerCase();
+
+                // Jika nama game sesuai dengan yang diketik, tampilkan. Jika tidak, sembunyikan.
+                if (gameTitle.includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
 </html>
