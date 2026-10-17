@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Top Up Game - NovaLoot</title>
+    
+    <!-- Hubungkan CSS Utama -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0; padding: 0;
+        }
+
+        /* HEADER & BANNER */
+        .game-header {
+            width: 100%;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            background: #0f172a;
+        }
+
+        .banner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.85;
+        }
+
+        /* CONTAINER 2 KOLOM */
+        .order-container {
+            max-width: 1100px;
+            margin: -50px auto 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* KOLOM KIRI (INFO) */
+        .left-column {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            height: fit-content;
+            border: 1px solid #e2e8f0;
+        }
+
+        .game-info-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-icon-big {
+            width: 75px;
+            height: 75px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 2px solid #e2e8f0;
+        }
+
+        .publisher-tag {
+            font-size: 11px;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .game-title-big {
+            margin: 6px 0 0 0;
+            font-size: 22px;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .game-description {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+
+        /* KOLOM KANAN (FORM) */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .order-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .step-number {
+            background: #ccff00;
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        /* INPUT FIELD */
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 14px 14px 45px;
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            color: #0f172a;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #2563eb;
+            background: #ffffff;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+        }
+
+        .input-help {
+            font-size: 11.5px;
+            color: #64748b;
+            margin-top: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            line-height: 1.5;
+        }
+
+        /* DENOM GRID */
+        .denom-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .denom-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .denom-card:hover, .denom-card.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .denom-name {
+            font-weight: 700;
+            font-size: 13.5px;
+            margin-bottom: 5px;
+            color: #0f172a;
+        }
+
+        .denom-price {
+            color: #16a34a;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        /* PAYMENT GRID */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .pay-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .pay-card:hover, .pay-card.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+        }
+
+        .pay-title {
+            font-size: 12.5px;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .pay-badge {
+            font-size: 9.5px;
+            background: #22c55e;
+            color: #fff;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        /* TOMBOL BELI */
+        .btn-beli {
+            width: 100%;
+            padding: 16px;
+            background: #2563eb;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-beli:hover {
+            background: #1d4ed8;
+        }
+
+        /* NAVBAR KECIL */
+        .top-nav {
+            background: #0f172a;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .order-container {
+                grid-template-columns: 1fr;
+                margin-top: -30px;
+            }
+            .denom-grid, .payment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <div class="top-nav">
+        <a href="index.html">🔥 NovaLoot</a>
+        <a href="index.html"><i class="fa fa-arrow-left"></i> Kembali ke Beranda</a>
+    </div>
+
+    <!-- BANNER -->
+    <div class="game-header">
+        <img id="bannerImg" src="" alt="Banner Game" class="banner-img">
+    </div>
+
+    <!-- KONTEN -->
+    <div class="order-container">
+
+        <!-- KOLOM KIRI (INFO GAME LENGKAP DENGAN ICON OVERLAY) -->
+<div class="left-column">
+    <div class="game-info-wrapper">
+        
+        <!-- Pembungkus Gambar & Icon Tambahan (Relative/Absolute) -->
+        <div style="position: relative; display: inline-block;">
+            <!-- Gambar Icon Utama (Berubah Otomatis sesuai Database) -->
+            <img id="iconImg" src="" alt="Icon" class="game-icon-big">
+            
+            <!-- Ikon Tambahan / Lencana (Melayang di Pojok Kanan Bawah) -->
+            <i class="fa-solid fa-circle-check" style="position: absolute; bottom: 2px; right: 2px; color: #22c55e; background: #ffffff; border-radius: 50%; font-size: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></i>
+        </div>
+
+        <!-- Judul dan Publisher -->
+        <div>
+            <span id="publisherTag" class="publisher-tag">Publisher</span>
+            <h1 id="gameTitle" class="game-title-big">Nama Game</h1>
+        </div>
+    </div>
+
+    <!-- Deskripsi Game -->
+    <div id="gameDesc" class="game-description">
+        Deskripsi game akan dimuat otomatis...
+    </div>
+</div>
+
+        <!-- KOLOM KANAN -->
+        <div class="right-column">
+            
+            <!-- STEP 1 -->
+            <div class="order-card">
+                <div class="card-header">
+                    <div class="step-number">1</div>
+                    MASUKKAN ID PEMAIN ANDA
+                </div>
+                <div class="card-body">
+                    <div class="input-wrapper">
+                        <i class="fa fa-user input-icon"></i>
+                        <input type="text" id="userIdInput" placeholder="Masukkan User ID">
+                        <input type="text" id="zoneId" placeholder="Server ID (Opsional)" style="margin-top: 10px;">
+                    </div>
+                    <div class="input-help">
+                        <i class="fa fa-question-circle"></i>
+                        <span>Masukkan ID akun game Anda dengan benar agar transaksi dapat diproses secara instan.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="order-card">
+                <div class="card-header">
+                    <div class="step-number">2</div>
+                    PILIH JUMLAH NOMINAL (DENOM)
+                </div>
+                <div class="card-body">
+                    <div class="denom-grid" id="denomList">
+                        <!-- Data Denom Masuk Otomatis -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="order-card">
+                <div class="card-header">
+                    <div class="step-number">3</div>
+                    PILIH METODE PEMBAYARAN
+                </div>
+                <div class="card-body">
+                    <div class="payment-grid">
+                        <div class="pay-card" onclick="pilihMetode('QRIS / All Payment', this)">
+                            <div class="pay-title">QRIS (GoPay, Dana, OVO, ShopeePay)</div>
+                            <span class="pay-badge">Instant</span>
+                        </div>
+                        <div class="pay-card" onclick="pilihMetode('Virtual Account BCA', this)">
+                            <div class="pay-title">Virtual Account BCA</div>
+                            <span class="pay-badge">Otomatis</span>
+                        </div>
+                        <div class="pay-card" onclick="pilihMetode('E-Wallet DANA', this)">
+                            <div class="pay-title">E-Wallet DANA</div>
+                            <span class="pay-badge">Fast</span>
+                        </div>
+                        <div class="pay-card" onclick="pilihMetode('Alfamart / Indomaret', this)">
+                            <div class="pay-title">Minimarket (Alfamart/Indomaret)</div>
+                            <span class="pay-badge">Kasir</span>
+                        </div>
+                    </div>
+                </div>
+                </div> <!-- penutup card-body (baris 405) -->
+
+    <!-- TOMBOL BELI DI TENGAH -->
+    <div style="text-align: center; margin-top: 25px; margin-bottom: 25px;">
+        <button type="button" class="btn-primary" onclick="prosesPembayaran()" style="padding: 12px 35px; font-size: 16px; font-weight: bold; cursor: pointer;">
+            Beli Sekarang &rarr;
+        </button>
+    </div>
+
+</div> <!-- penutup order-card -->
+
+ 
+    <!-- LOGIKA MENANGKAP DATA GAME & RENDER HALAMAN -->
+    <script>
+    const databaseGame = {
+    'free-fire': {
+        title: 'Free Fire',
+        publisher: 'Garena',
+        image: 'image/ff-banner.jpg',
+        icon: 'image/ff.jpg',
+        desc: 'Top Up Free Fire hanya dalam hitungan detik. Cukup masukan ID Free Fire Anda. Pilih jumlah Diamond yang Anda inginkan, selesaikan pembayaran, dan Diamond akan secara langsung ditambahkan ke akun Free Fire Anda.',
+        denom: [
+            { name: '50 Diamonds', price: 'Rp 8.000' },
+            { name: '140 Diamonds', price: 'Rp 20.000' },
+            { name: '355 Diamonds', price: 'Rp 50.000' },
+            { name: '720 Diamonds', price: 'Rp 100.000' }
+        ]
+    },
+    'mobile-legends': {
+        title: 'Mobile Legends',
+        publisher: 'Moonton',
+        image: 'image/ml-banner.avif',
+        icon: 'image/mlbb.jpg',
+        desc: 'Top Up Diamond Mobile Legends aman, cepat, dan terpercaya. Masukkan User ID dan Zone ID Anda dengan benar, pilih nominal Diamond, lalu selesaikan pembayaran.',
+        denom: [
+            { name: '86 Diamonds', price: 'Rp 19.500' },
+            { name: '172 Diamonds', price: 'Rp 38.000' },
+            { name: '257 Diamonds', price: 'Rp 57.000' },
+            { name: '706 Diamonds', price: 'Rp 150.000' }
+        ]
+    },
+    'pubg-mobile': {
+        title: 'PUBG Mobile',
+        publisher: 'Tencent Games',
+        image: 'image/banner-pubg.jpg',
+        icon: 'image/PUBG.webp',
+        desc: 'Beli Unknown Cash (UC) PUBG Mobile instan dan aman di sini. Cukup masukkan ID Karakter Anda, pilih nominal UC, dan lakukan pembayaran. UC langsung masuk ke akun Anda.',
+        denom: [
+            { name: '60 UC', price: 'Rp 15.000' },
+            { name: '325 UC', price: 'Rp 75.000' },
+            { name: '660 UC', price: 'Rp 150.000' },
+            { name: '1800 UC', price: 'Rp 375.000' }
+        ]
+    },
+    'clash-of-clans': {
+        title: 'Clash of Clans',
+        publisher: 'Supercell',
+        image: 'image/banner-coc.webp',
+        icon: 'image/Coc.png',
+        desc: 'Top Up Gems Clash of Clans dengan mudah dan cepat. Masukkan Player Tag akun CoC Anda, pilih jumlah Gems yang diinginkan, dan selesaikan transaksi.',
+        denom: [
+            { name: '80 Gems', price: 'Rp 15.000' },
+            { name: '500 Gems', price: 'Rp 75.000' },
+            { name: '1200 Gems', price: 'Rp 150.000' },
+            { name: '2500 Gems', price: 'Rp 300.000' }
+        ]
+    },
+    'clash-royale': {
+        title: 'Clash Royale',
+        publisher: 'Supercell',
+        image: 'image/CR-banner.avif',
+        icon: 'image/CR.png',
+        desc: 'Dapatkan Gems dan Pass Royale Clash Royale secara instan. Masukkan Player Tag Anda, pilih item atau jumlah Gems yang Anda butuhkan.',
+        denom: [
+            { name: '80 Gems', price: 'Rp 15.000' },
+            { name: '500 Gems', price: 'Rp 75.000' },
+            { name: '1200 Gems', price: 'Rp 150.000' },
+            { name: 'Pass Royale', price: 'Rp 79.000' }
+        ]
+    },
+    'roblox': {
+        title: 'Roblox',
+        publisher: 'Roblox Corporation',
+        image: 'image/banner-roblox.jpeg',
+        icon: 'image/roblox.webp',
+        desc: 'Top Up Robux Roblox resmi, cepat, dan aman. Masukkan username atau data akun Roblox Anda dengan benar untuk mempercepat proses pengiriman Robux.',
+        denom: [
+            { name: '400 Robux', price: 'Rp 75.000' },
+            { name: '800 Robux', price: 'Rp 150.000' },
+            { name: '1700 Robux', price: 'Rp 300.000' },
+            { name: '4500 Robux', price: 'Rp 750.000' }
+        ]
+    },
+    'valorant': {
+        title: 'Valorant',
+        publisher: 'Riot Games',
+        image: 'image/banner-valorant.jpg',
+        icon: 'image/valorant.avif',
+        desc: 'Beli Valorant Points (VP) resmi Riot Games dengan harga terbaik. Masukkan Riot ID Anda, pilih jumlah VP, dan lakukan pembayaran. VP langsung masuk ke akun Anda.',
+        denom: [
+            { name: '125 VP', price: 'Rp 15.000' },
+            { name: '420 VP', price: 'Rp 50.000' },
+            { name: '700 VP', price: 'Rp 80.000' },
+            { name: '1375 VP', price: 'Rp 150.000' }
+        ]
+    },
+    'magic-chess': {
+        title: 'Magic Chess: Go Go',
+        publisher: 'Moonton',
+        image: 'image/mcgg-banner.png',
+        icon: 'image/mcgg.webp',
+        desc: 'Top Up Magic Chess Go Go (MCGG) instan dan aman. Masukkan User ID dan Zone ID Anda dengan benar untuk melakukan pembelian item atau pass.',
+        denom: [
+            { name: '100 Badges', price: 'Rp 15.000' },
+            { name: '250 Badges', price: 'Rp 35.000' },
+            { name: '500 Badges', price: 'Rp 70.000' },
+            { name: '1000 Badges', price: 'Rp 140.000' }
+        ]
+    }
+};
+
+        // Ambil parameter game dari URL (contoh: detail.html?game=free-fire)
+        const urlParams = new URLSearchParams(window.location.search);
+        const gameKey = urlParams.get('game') || 'free-fire';
+        const currentGame = databaseGame[gameKey] || databaseGame['free-fire'];
+
+        let selectedDenom = '';
+        let selectedPrice = '';
+        let selectedPayment = '';
+
+        // Render Data ke Halaman
+        document.getElementById('pageTitle').innerText = `Top Up ${currentGame.title} - NovaLoot`;
+        document.getElementById('gameTitle').innerText = currentGame.title;
+        document.getElementById('publisherTag').innerText = currentGame.publisher;
+        document.getElementById('gameDesc').innerText = currentGame.desc;
+        document.getElementById('bannerImg').src = currentGame.image;
+        document.getElementById('iconImg').src = currentGame.image;
+
+        // Render List Denom
+        const denomContainer = document.getElementById('denomList');
+        currentGame.denom.forEach(item => {
+            denomContainer.innerHTML += `
+                <div class="denom-card" onclick="pilihDenom('${item.name}', '${item.price}', this)">
+                    <div class="denom-name">${item.name}</div>
+                    <div class="denom-price">${item.price}</div>
+                </div>
+            `;
+        });
+
+        function pilihDenom(name, price, el) {
+            selectedDenom = name;
+            selectedPrice = price;
+            document.querySelectorAll('.denom-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function pilihMetode(method, el) {
+            selectedPayment = method;
+            document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function prosesCheckout() {
+            const userId = document.getElementById('userId').value;
+            const zoneId = document.getElementById('zoneId').value;
+
+            if (!userId) { alert('Masukkan User ID Anda!'); return; }
+            if (!selectedDenom) { alert('Pilih jumlah nominal terlebih dahulu!'); return; }
+            if (!selectedPayment) { alert('Pilih metode pembayaran terlebih dahulu!'); return; }
+
+            const noAdmin = "62895635117021";
+            let teks = `Halo Admin NovaLoot, saya ingin memesan top up:${"%0A%0A"}` +
+                       `🎮 Game: ${currentGame.title}${"%0A"}` +
+                       `👤 User ID: ${userId}` + (zoneId ? ` (${zoneId})` : '') + `${"%0A"}` +
+                       `💎 Nominal: ${selectedDenom}${"%0A"}` +
+                       `💵 Harga: ${selectedPrice}${"%0A"}` +
+                       `💳 Pembayaran: ${selectedPayment}${"%0A%0A"}` +
+                       `Mohon instruksi selanjutnya!`;
+
+            window.open(`https://wa.me/${noAdmin}?text=${teks}`, '_blank');
+        }
+        document.getElementById('bannerImg').src = currentGame.image; // Untuk foto banner atas
+document.getElementById('iconImg').src = currentGame.icon;   // Untuk foto icon kecil
+document.getElementById('gameDesc').innerText = currentGame.desc; // Untuk teks deskripsi
+
+function prosesPembayaran() {
+    const gameName = currentGame ? currentGame.title : 'Game';
+    const selectedItem = selectedDenom ? selectedDenom.name : 'Item Game';
+    const price = selectedDenom ? selectedDenom.price : 'Rp 0';
+    const iconPath = currentGame ? currentGame.icon : '';
+    
+    // Ambil nilai User ID dengan aman
+    const userIdInput = document.getElementById('userId') || document.querySelector('input[type="text"]');
+    const userId = userIdInput ? userIdInput.value.trim() : '';
+
+    // Validasi: Jika ID kosong, tampilkan peringatan
+    if (!userId) {
+        alert('Silakan masukkan ID Pemain terlebih dahulu!');
+        if (userIdInput) userIdInput.focus();
+        return;
+    }
+
+    // Susun URL untuk dikirim ke checkout.html beserta metode pembayarannya
+    const checkoutUrl = `checkout.html?game=${encodeURIComponent(gameName)}&item=${encodeURIComponent(selectedItem)}&price=${encodeURIComponent(price)}&userId=${encodeURIComponent(userId)}&icon=${encodeURIComponent(iconPath)}&method=${encodeURIComponent(typeof selectedPaymentMethod !== 'undefined' ? selectedPaymentMethod : 'QRIS')}`;
+
+    // Buka checkout di tab baru
+    window.open(checkoutUrl, '_blank');
+}
+    </script>
+    <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran Berhasil - NovaLoot</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .success-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .success-icon {
+            font-size: 50px;
+            color: #22c55e;
+            margin-bottom: 15px;
+        }
+        .success-card h2 {
+            color: #38bdf8;
+            margin: 0 0 10px 0;
+        }
+        .success-card p {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        .invoice-box {
+            background-color: #0f172a;
+            border: 1px dashed #334155;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 13px;
+        }
+        .invoice-box div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .invoice-box span.label {
+            color: #94a3b8;
+        }
+        .invoice-box span.value {
+            font-weight: 600;
+            color: #f8fafc;
+        }
+        .btn-home {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: background-color 0.2s;
+        }
+        .btn-home:hover {
+            background-color: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        <div class="success-icon">✅</div>
+        <h2>Pembayaran Berhasil!</h2>
+        <p>Terima kasih telah melakukan transaksi di NovaLoot. Pesanan Anda sedang diproses secara instan.</p>
+
+        <div class="invoice-box">
+            <div>
+                <span class="label">No. Invoice:</span>
+                <span class="value" id="invNumber">NVL-20261017-001</span>
+            </div>
+            <div>
+                <span class="label">Status:</span>
+                <span class="value" style="color: #22c55e;">Lunas / Sukses</span>
+            </div>
+            <div>
+                <span class="label">No. WA / Email:</span>
+                <span class="value" id="invContact">-</span>
+            </div>
+            <div>
+                <span class="label">Total Pembayaran:</span>
+                <span class="value" id="invTotal">Rp 0</span>
+            </div>
+        </div>
+
+        <p style="font-size: 12px; color: #64748b; margin-bottom: 20px;">
+            Bukti transaksi dan status pengiriman item telah dikirimkan ke kontak Anda.
+        </p>
+
+        <a href="index.html" class="btn-home">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+        // Membuat nomor invoice acak unik
+        const randomInv = 'NVL-' + Math.floor(100000 + Math.random() * 900000);
+        document.getElementById('invNumber').innerText = randomInv;
+
+        // Menangkap total dari URL jika dikirim
+        const urlParams = new URLSearchParams(window.location.search);
+        const total = urlParams.get('total');
+        if (total) {
+            document.getElementById('invTotal').innerText = total;
+        }
+
+        // Ambil data kontak yang disimpan dari checkout.html
+        const buyerWa = localStorage.getItem('buyerWa');
+        const buyerEmail = localStorage.getItem('buyerEmail');
+        const contactInfo = buyerWa || buyerEmail || 'Tidak Diisi';
+        
+        document.getElementById('invContact').innerText = contactInfo;
+    </script>
+</body>
+</html>

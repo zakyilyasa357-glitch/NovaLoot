@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembayaran QRIS - NovaLoot</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .qris-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .qris-card h2 {
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #22c55e;
+            margin: 15px 0;
+        }
+        .qr-box {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            margin: 15px 0;
+        }
+        .qr-box img {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+        }
+        .instruction {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+            margin-top: 10px;
+        }
+        .btn-selesai {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #22c55e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .btn-selesai:hover {
+            background-color: #16a34a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="qris-card">
+        <h2>Scan QRIS untuk Membayar</h2>
+        <p style="font-size: 14px; color: #cbd5e1;">Silakan gunakan GoPay, OVO, Dana, ShopeePay, atau m-Banking.</p>
+        
+        <div class="total-amount" id="displayTotal">Rp 0</div>
+
+        <div class="qr-box">
+            <!-- Ganti src dengan path gambar QR Code Anda, atau gunakan placeholder -->
+            <img src="image/qris-dummy.png" alt="QRIS Code" id="qrisImage">
+        </div>
+
+        <div class="instruction">
+            Buka aplikasi pembayaran Anda, lalu scan QR Code di atas. Pastikan nominal pembayaran sudah sesuai.
+        </div>
+
+        <button type="button" class="btn-selesai" onclick="selesaiBayar()">
+    Saya Sudah Membayar
+        </button>
+    </div>
+
+    <script>
+    // Menangkap total tagihan dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const total = urlParams.get('total');
+    if (total) {
+        document.getElementById('displayTotal').innerText = total;
+    }
+
+    function selesaiBayar() {
+        // Alihkan ke halaman sukses dengan membawa parameter total harga
+        window.location.href = `success.html?total=${encodeURIComponent(total || 'Rp 0')}`;
+    }
+</script>
+</body>
+</html>

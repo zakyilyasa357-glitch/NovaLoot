@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Pembayaran - NovaLoot</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .checkout-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Kolom Kiri: Info Game */
+        .game-info-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #334155;
+            height: fit-content;
+        }
+
+        .game-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-header img {
+            width: 70px;
+            height: 70px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        .game-title-group h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #38bdf8;
+        }
+
+        .game-title-group p {
+            margin: 5px 0 0 0;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .game-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            border-top: 1px solid #334155;
+            padding-top: 15px;
+        }
+
+        /* Kolom Kanan: Detail Rincian & Form Kontak */
+        .checkout-detail-card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid #334155;
+        }
+
+        .notice-box {
+            background-color: #0284c71a;
+            border-left: 4px solid #38bdf8;
+            padding: 12px 15px;
+            font-size: 13px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            color: #e0f2fe;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #cbd5e1;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background-color: #0f172a;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-hint {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        /* Tabel Rincian Item */
+        .summary-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .summary-table tr {
+            border-bottom: 1px dashed #334155;
+        }
+
+        .summary-table td {
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .summary-table td.label {
+            color: #94a3b8;
+        }
+
+        .summary-table td.value {
+            text-align: right;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        .total-row td {
+            font-size: 16px;
+            font-weight: bold;
+            color: #38bdf8 !important;
+            padding-top: 15px;
+            border-bottom: none;
+        }
+
+        .btn-pay {
+            width: 100%;
+            padding: 14px;
+            background-color: #22c55e;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-pay:hover {
+            background-color: #16a34a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <!-- KOLOM KIRI: INFO GAME -->
+        <div class="game-info-card">
+            <div class="game-header">
+                <img id="checkoutIcon" src="image/default.jpg" alt="Game Icon">
+                <div class="game-title-group">
+                    <p id="checkoutPublisher">Publisher Game</p>
+                    <h2 id="checkoutTitle">Nama Game</h2>
+                </div>
+            </div>
+            <div class="game-description">
+                Lakukan konfirmasi pesanan Anda. Bukti transaksi dan detail pengiriman voucher/diamond akan dikirimkan sesuai kontak yang dimasukkan.
+            </div>
+        </div>
+
+        <!-- KOLOM KANAN: DETAIL PESANAN & KONTAK -->
+        <div class="checkout-detail-card">
+            <div class="notice-box">
+                💡 Anda boleh mengisi nomor WhatsApp, email, atau keduanya untuk menerima bukti transaksi.
+            </div>
+
+            <!-- Form Kontak -->
+            <div class="form-group">
+                <label>Nomor WhatsApp</label>
+                <input type="text" id="whatsappInput" placeholder="Contoh: 081234567890">
+                <div class="form-hint">Bukti pembayaran atas pembelianmu akan kami kirimkan ke WhatsApp Anda.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Alamat Email</label>
+                <input type="email" id="emailInput" placeholder="Contoh: nama@email.com">
+                <div class="form-hint">Bukti pembayaran atas pembelianmu akan kami kirimkan ke Email Anda.</div>
+            </div>
+
+            <!-- Ringkasan Rincian -->
+            <table class="summary-table">
+                <tr>
+                    <td class="label">ID Pemain / User ID</td>
+                    <td class="value" id="checkoutUserId">-</td>
+                </tr>
+                <tr>
+                    <td class="label">Item</td>
+                    <td class="value" id="checkoutItem">-</td>
+                </tr>
+                <tr>
+                    <td class="label">Metode Pembayaran</td>
+                    <td class="value" id="checkoutMethod">-</td>
+                </tr>
+                <tr>
+                    <td class="label">Konfirmasi</td>
+                    <td class="value" style="color:#22c55e;">Otomatis</td>
+                </tr>
+                <tr>
+                    <td class="label">Sub Total</td>
+                    <td class="value" id="checkoutSubtotal">Rp 0</td>
+                </tr>
+                <tr>
+                    <td class="label">Diskon</td>
+                    <td class="value">- IDR 0</td>
+                </tr>
+                <tr class="total-row">
+                    <td class="label">Total Tagihan</td>
+                    <td class="value" id="checkoutTotal">Rp 0</td>
+                </tr>
+            </table>
+
+            <button type="button" class="btn-pay" onclick="konfirmasiBayar()">Bayar Sekarang</button>
+        </div>
+    </div>
+
+    <!-- SCRIPT MENANGKAP PARAMETER DARI URL -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+
+        document.getElementById('checkoutTitle').innerText = urlParams.get('game') || 'Game';
+        document.getElementById('checkoutItem').innerText = urlParams.get('item') || '-';
+        document.getElementById('checkoutUserId').innerText = urlParams.get('userId') || '-';
+        document.getElementById('checkoutSubtotal').innerText = urlParams.get('price') || 'Rp 0';
+        document.getElementById('checkoutTotal').innerText = urlParams.get('price') || 'Rp 0';
+        document.getElementById('checkoutMethod').innerText = urlParams.get('method') || 'QRIS';
+
+        if (urlParams.get('icon')) {
+            document.getElementById('checkoutIcon').src = urlParams.get('icon');
+        }
+
+  function konfirmasiBayar() {
+    const wa = document.getElementById('whatsappInput') ? document.getElementById('whatsappInput').value.trim() : '';
+    const email = document.getElementById('emailInput') ? document.getElementById('emailInput').value.trim() : '';
+    const totalTagihan = document.getElementById('checkoutTotal').innerText;
+
+    // Validasi opsional: pastikan salah satu terisi jika ingin diwajibkan
+    if (!wa && !email) {
+        alert('Harap isi minimal salah satu kontak (WhatsApp atau Email) untuk menerima bukti pembayaran!');
+        return;
+    }
+
+    // Simpan data kontak pembeli secara diam-diam di latar belakang (localStorage)
+    localStorage.setItem('buyerWa', wa);
+    localStorage.setItem('buyerEmail', email);
+
+    // Langsung arahkan ke halaman QRIS tanpa membuka aplikasi WhatsApp
+    window.location.href = `qris.html?total=${encodeURIComponent(totalTagihan)}`;
+}
+    </script>
+</body>
+</html>
